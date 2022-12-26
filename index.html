@@ -1,0 +1,127 @@
+<!-- The HTML structure for the application -->
+<body>
+<div id="app">
+  <h1>Amigos Couple Picker Challenge</h1>
+  <button id="pickButton">Pick Couples</button>
+  <div id="names"></div>
+</div><!-- The HTML structure for the button -->
+<button id="shareButton">Share on WhatsApp</button>
+</body>
+
+<head>
+    <style>
+        /* The CSS styles for the application */
+#app {
+  width: 500px;
+  margin: 0 auto;
+  text-align: center;
+  
+  
+}
+
+#pickButton {
+  padding: 10px;
+  background-color: #0084ff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+#names {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 20px;
+  color: white;
+  background-color: green;
+}
+/* The CSS styles for the button */
+#shareButton {
+  padding: 10px;
+  background-color: #25d366;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+body {
+  background-image: url('amigos.jpeg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  
+}
+h1{
+  color: red;
+  border-radius: 1px solid black;
+  background-color: white;
+}
+
+
+
+</style>
+<script>
+    // The JavaScript code for the application
+
+// The list of names
+var names = [
+  {name: 'Amrutha', gender: 'girl'},
+  {name: 'Doriya', gender: 'girl'},
+  {name: 'Liya', gender: 'girl'},
+  {name: 'Haritha', gender: 'girl'},
+  {name: 'godly', gender: 'girl'},
+  {name: 'Anusree', gender: 'girl'},
+  {name: 'Greeshma', gender: 'girl'},
+  {name: 'Akhil', gender: 'boy'},
+  {name: 'Alvin', gender: 'boy'},
+  {name: 'Arun', gender: 'boy'},
+  {name: 'Amal', gender: 'boy'},
+  {name: 'Tendul', gender: 'boy'},
+];
+
+// Get references to the elements
+var pickButton = document.getElementById('pickButton');
+var namesElement = document.getElementById('names');
+
+// Function to pick a random name
+function pickName() {
+// Filter the names list to get a list of girls' names and a list of boys' names
+var girls = names.filter(function(name) {
+return name.gender === 'girl';
+});
+var boys = names.filter(function(name) {
+return name.gender === 'boy';
+});
+
+// Pick a random name from each list
+var girlName = girls[Math.floor(Math.random() * girls.length)];
+var boyName = boys[Math.floor(Math.random() * boys.length)];
+
+// Display the names in the names element
+namesElement.textContent = 'Girl: ' + girlName.name + ' / Boy: ' + boyName.name;
+
+}
+
+// Handle the pick button click
+pickButton.addEventListener('click', pickName);
+
+// The JavaScript code for the button
+
+// Get a reference to the button
+var shareButton = document.getElementById('shareButton');
+
+// Handle the button click
+shareButton.addEventListener('click', function() {
+  // Take a screenshot of the current webpage
+  html2canvas(document.body).then(function(canvas) {
+    // Convert the canvas to a DataURL
+    var dataURL = canvas.toDataURL();
+
+    // Open the image in WhatsApp
+    window.open('https://wa.me/?text=' + encodeURIComponent(dataURL));
+  });
+});
+src="https://unpkg.com/html2canvas@2.0.0/dist/html2canvas.min.js"
+src="/path/to/html2canvas.min.js"
+
+</script>
+</head>
